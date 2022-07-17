@@ -3,11 +3,11 @@ package d.ishigishou.shawn_mvvm.ui.main
 import com.haroldadmin.cnradapter.NetworkResponse
 import d.ishigishou.shawn_mvvm.api.ApiService
 import d.ishigishou.shawn_mvvm.models.ErrorResponse
-import d.ishigishou.shawn_mvvm.network.RetrofitManager
+import d.ishigishou.shawn_mvvm.models.UserListModel
 
 class MainRepository(private val api: ApiService) {
 
-    suspend fun getUsers(since: Int, per_page: Int): Pair<ArrayList<String>?, ErrorResponse?> {
+    suspend fun getUsers(since: Int, per_page: Int): Pair<ArrayList<UserListModel>?, ErrorResponse?> {
         return when (val response = api.getUsers(since, per_page)) {
             is NetworkResponse.Success -> {
                 Pair(response.body, null)

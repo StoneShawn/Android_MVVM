@@ -12,10 +12,13 @@
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
 
+        <action
+            android:id="@+id/action_mainFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="d.ishigishou.shawn_mvvm.ProfileFragment"
+        android:name="d.ishigishou.shawn_mvvm.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

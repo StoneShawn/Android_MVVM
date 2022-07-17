@@ -3,8 +3,8 @@ package d.ishigishou.shawn_mvvm.di
 import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
 import d.ishigishou.shawn_mvvm.api.ApiService
 import d.ishigishou.shawn_mvvm.api.UrlConstant
-import d.ishigishou.shawn_mvvm.network.RetrofitManager
 import d.ishigishou.shawn_mvvm.ui.main.MainRepository
+import d.ishigishou.shawn_mvvm.ui.profile.ProfileRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -58,5 +58,11 @@ object AppModules {
     @Provides
     fun provideMainRepository(newsInterface: ApiService): MainRepository{
         return MainRepository(newsInterface)
+    }
+
+    @Singleton
+    @Provides
+    fun provideProfileRepository(newsInterface: ApiService): ProfileRepository{
+        return ProfileRepository(newsInterface)
     }
 }

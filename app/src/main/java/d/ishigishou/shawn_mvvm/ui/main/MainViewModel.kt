@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import d.ishigishou.shawn_mvvm.base.BaseViewModel
 import d.ishigishou.shawn_mvvm.models.ErrorResponse
+import d.ishigishou.shawn_mvvm.models.UserListModel
+import d.ishigishou.shawn_mvvm.models.UserModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -15,10 +17,8 @@ class MainViewModel @Inject constructor(mainRepository: MainRepository) : BaseVi
 
     private val repos = mainRepository
 
-    val userList = MutableLiveData<ArrayList<String>>()
 
-
-    fun getUsers(since: Int, per_page: Int): LiveData<Pair<ArrayList<String>?,ErrorResponse?>>{
+    fun getUsers(since: Int, per_page: Int): LiveData<Pair<ArrayList<UserListModel>?,ErrorResponse?>>{
         return liveData(Dispatchers.Main){
             val response = repos.getUsers(since,per_page)
             emit(response)
