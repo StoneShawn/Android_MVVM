@@ -5,28 +5,34 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import androidx.lifecycle.Observer
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import d.ishigishou.shawn_mvvm.R
+import d.ishigishou.shawn_mvvm.base.MyViewModelFactory
+import d.ishigishou.shawn_mvvm.databinding.FragmentMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = MainFragment()
+@AndroidEntryPoint
+class MainFragment : Fragment(R.layout.fragment_main) {
+    private lateinit var binding: FragmentMainBinding
+    private val viewModel: MainViewModel by viewModels()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding = FragmentMainBinding.bind(view)
+        initView()
     }
 
-    private lateinit var viewModel: MainViewModel
+    private fun initView() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.fragment_main, container, false)
-    }
+        viewModel.getUsers(0,20).observe(viewLifecycleOwner) {
+            if (it.first !=null){
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
+            }
+
+        }
+
     }
 
 }
